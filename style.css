@@ -1,0 +1,347 @@
+/* Reset */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Fonts */
+@font-face {
+    font-family: inter-reg;
+    src: url(fonts/Inter_Regular.ttf);
+}
+
+@font-face {
+    font-family: inter-semi;
+    src: url(fonts/Inter_SemiBold.ttf);
+}
+
+h1, h2, h3 {
+    font-family: inter-semi;
+}
+
+p {
+    font-family: inter-reg;    
+}
+
+/* Farver */
+
+:root {
+    --dark-color: #056dfa;
+    --light-color: #056bfa27;
+    --light-color-gradient: #5FA0FC;
+}
+
+/* Misc */
+
+.hide {
+    display: none !important; 
+}
+
+/* Intro */
+
+.intro-screen {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, var(--dark-color), var(--light-color-gradient));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-title {
+    color: var(--dark-color);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+}
+
+.intro-container label {
+    color: rgb(0, 0, 0);
+    font-family: inter-reg;
+}
+
+.intro-container input {
+    border-radius: 12px;
+    border: 1.5px solid var(--dark-color);
+    padding: 5px 10px;
+    text-transform: capitalize;
+}
+
+.intro-container div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.svg-icon {
+    height: 40px;
+    width: 40px;
+}
+
+/* Header */
+
+header {
+    width: 100vw;
+    height: 5vh;
+    background-color: #056dfa;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    margin-left: 25px;
+}
+
+/* Sidebar */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px; 
+    position: sticky;
+    height: 80vh;  
+    /* background-color: #6c6c6c; */
+    border-radius: 12px;
+    width: 300px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 15px 0 0 25px;
+    padding-top: 25px;
+}
+
+.sidebar-btn {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 8px 12px 8px 16px;
+  gap: 8px;
+  height: 40px;
+  width: 250px;
+  border: none;
+  background-color: #056bfa27;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.lable {
+  margin-top: 1px;
+  font-size: 19px;
+  line-height: 22px;
+  color: #056dfa;
+  letter-spacing: 1px;
+}
+
+.sidebar-btn:hover {
+  background: #056bfa49;
+}
+
+.sidebar-btn:hover .svg-icon, .task-btn:hover {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-8deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(8deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+/* Todo */
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 25px;
+}
+
+.task-container {
+    margin: 15px 0 0 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+li {
+    list-style: none;
+    font-family: inter-reg;
+    background-color: #056bfa27;
+    border-radius: 12px;
+    width: 90%;
+    padding: 8px 12px 8px 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+}
+
+#todo-text {
+    border-radius: 12px;
+    border: 1px solid grey;
+    padding: 8px 12px 8px 16px;
+}
+
+.todo-btn, .todo-settings, input[type=date], #todo-location {
+    padding: 8px 12px 8px 16px;
+    border-radius: 12px;
+    border: none;
+    font-family: inter-semi;
+}
+
+.todo-settings {
+    padding: 8px 10.5px;
+}
+
+li:hover {
+    transform: scale(1.01);
+}
+
+.list-container {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+}
+
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 10px;
+    overflow-x: scroll;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 70vw;
+    min-height: 72.7vh;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.task-btn {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.task-text-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+input[type=checkbox] {
+    accent-color: #4CAF50;
+    cursor: pointer;
+}
+
+input[type=date], #todo-location {
+    background-color: #e9e9ed;
+}
+
+.task-btn:first-child:hover svg path {
+    stroke: #5e5e5e;
+}
+
+.task-extras-icon {
+    height: 12px;
+    width: 12px;
+    margin-right: 5px;
+}
+
+#calender {
+    height: 16px;
+    width: 16px;
+}
+
+.task-extra {
+    border-left: 1px solid #000;
+    padding-left: 5px;
+}
+
+li.done span {
+    opacity: 0.5;
+}
