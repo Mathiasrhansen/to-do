@@ -4,15 +4,19 @@ const todoContainerComplete = document.querySelector(".todo-container-complete")
 const todoBtn = document.querySelector(".todo-btn");
 const taskTitle = document.querySelector(".task-title");
 const taskArr = [];
-// const todoExtra = document.querySelector(".todo-settings");
 const todoDateBtn = document.querySelector("#date-btn");
 const todoDate = document.querySelector("#todo-date");
 const todoLocationBtn = document.querySelector("#location-btn");
 const todoLocation = document.querySelector("#todo-location");
-
-todoBtn.addEventListener("click", addTask);
 todoDateBtn.addEventListener("click", showDate);
 todoLocationBtn.addEventListener("click", showLocation);
+
+todoBtn.addEventListener("click", addTask);
+todoText.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        addTask();
+    }
+});
 
 initialize();
 
@@ -63,10 +67,6 @@ function addTask() {
         taskArr.push(taskObj);
         showTaskArr();
     }
-}
-
-function filterAndSortTaskArr() {
-    showTaskArr();
 }
 
 function showTaskArr(arr = taskArr) {
@@ -162,14 +162,11 @@ function showTaskArr(arr = taskArr) {
     todoText.value = "";
     todoLocation.value = "";
     resetExtras();
-    // todoDate.value = FIND UD AF HVORDAN
+    todoDate.value = "";
 }
 
 function deleteTask(event) {
-    // Finder den li der er tættest forældre til delete btn
     const li = event.currentTarget.closest("li");
-
-    // Laver en const med id'et ud fra id'et som er taget fra objektet
     const taskId = li.dataset.id;
     const index = taskArr.findIndex(task => task.id === taskId);
     if (index > -1) {
@@ -185,7 +182,7 @@ function completeTask(event) {
     const task = taskArr.find(task => task.id === taskId);
     
     if (task) {
-        task.done = !task.done; // Toggle instead of always setting to true
+        task.done = !task.done;
         showTaskArr(); 
     }
 }
@@ -197,7 +194,7 @@ function favoriteTask(event) {
     const task = taskArr.find(task => task.id === taskId);
     
     if (task) {
-        task.favorite = !task.favorite; // Toggle instead of always setting to true
+        task.favorite = !task.favorite;
         showTaskArr();
     }
 }
@@ -209,7 +206,7 @@ function urgentTask(event) {
     const task = taskArr.find(task => task.id === taskId);
     
     if (task) {
-        task.urgent = !task.urgent; // Toggle instead of always setting to true
+        task.urgent = !task.urgent;
         console.log(task);
         showTaskArr();
     }
@@ -271,7 +268,19 @@ introNameInput.addEventListener("keyup", function(event) {
     }
 });
 
-// Function to save username to localStorage
+// Intro screen
+
+function checkUsername() {
+    const savedUsername = localStorage.getItem("username");
+    
+    if (savedUsername) {
+        displayWelcome(savedUsername);
+        showMainApp();
+    } else {
+        showIntroScreen();
+    }
+}
+
 function saveUsername(username) {
     if (username !== "") {
         const capitalizedUsername = username.charAt(0).toUpperCase() + username.slice(1);
@@ -280,26 +289,10 @@ function saveUsername(username) {
     }
 }
 
-// Function to check if username exists on page load
-function checkUsername() {
-    const savedUsername = localStorage.getItem("username");
-    
-    if (savedUsername) {
-        // Username exists - show main app
-        displayWelcome(savedUsername);
-        showMainApp();
-    } else {
-        // No username - show intro screen
-        showIntroScreen();
-    }
-}
-
-// Function to display welcome message
 function displayWelcome(username) {
     document.querySelector(".header-text").innerHTML = `Welcome, ${username}`;
 }
 
-// Function to show main app (hide intro)
 function showMainApp() {
     document.querySelector("header").classList.remove("hide");
     document.querySelector(".sidebar").classList.remove("hide");
@@ -307,7 +300,6 @@ function showMainApp() {
     document.querySelector(".intro-screen").classList.add("hide");
 }
 
-// Function to show intro screen (hide main app)
 function showIntroScreen() {
     document.querySelector("header").classList.add("hide");
     document.querySelector(".sidebar").classList.add("hide");

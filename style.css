@@ -359,3 +359,9 @@ input[type=date], #todo-location, .todo-btn, .todo-settings {
 li.done span {
     opacity: 0.5;
 }
+
+/* .todo-settings span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+} */
