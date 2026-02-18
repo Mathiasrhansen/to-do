@@ -54,7 +54,7 @@
           class="sidebar-btn"
           id="done"
           data-action="filter"
-          data-filter="Done"
+          data-filter="Completed"
         >
           <svg
             width="24"
@@ -146,12 +146,20 @@
       </div>
       <div class="task-container hide">
         <div>
-          <input type="text" id="todo-text" required />
           <button class="todo-btn">Add task</button>
-          <button class="todo-settings">
-            <img src="icons/dots.svg" alt="" />
+          <input type="text" id="todo-text" required />
+          <button class="todo-settings" id="date-btn">
+            <img
+              src="icons/date.svg"
+              class="task-extras-icon"
+              id="calender"
+            />Set date
           </button>
           <input type="date" id="todo-date" min="" class="hide" />
+          <button class="todo-settings" id="location-btn">
+            <img src="icons/location.svg" alt="" class="task-extras-icon" />Set
+            location
+          </button>
           <input
             type="text"
             id="todo-location"

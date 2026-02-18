@@ -4,13 +4,15 @@ const todoContainerComplete = document.querySelector(".todo-container-complete")
 const todoBtn = document.querySelector(".todo-btn");
 const taskTitle = document.querySelector(".task-title");
 const taskArr = [];
-const todoExtra = document.querySelector(".todo-settings");
+// const todoExtra = document.querySelector(".todo-settings");
+const todoDateBtn = document.querySelector("#date-btn");
 const todoDate = document.querySelector("#todo-date");
+const todoLocationBtn = document.querySelector("#location-btn");
 const todoLocation = document.querySelector("#todo-location");
 
 todoBtn.addEventListener("click", addTask);
-
-todoExtra.addEventListener("click", toggleExtras);
+todoDateBtn.addEventListener("click", showDate);
+todoLocationBtn.addEventListener("click", showLocation);
 
 initialize();
 
@@ -20,14 +22,31 @@ function initialize() {
     setDate();
 }
 
+function showDate() {
+    todoDate.classList.toggle("hide");
+    todoDateBtn.classList.toggle("hide");
+}
+
+function showLocation() {
+    todoLocation.classList.toggle("hide");
+    todoLocationBtn.classList.toggle("hide");
+}
+
+function resetExtras() {
+    if (todoDateBtn.classList.contains("hide") === true) {
+        todoDate.classList.toggle("hide");
+        todoDateBtn.classList.toggle("hide");
+    }
+
+    if (todoLocationBtn.classList.contains("hide") === true) {
+        todoLocation.classList.toggle("hide");
+        todoLocationBtn.classList.toggle("hide");
+    }
+}
+
 function setDate(){
     let currentDate = new Date().toJSON().slice(0, 10);
     todoDate.min = currentDate;
-}
-
-function toggleExtras() {
-    todoDate.classList.toggle("hide");
-    todoLocation.classList.toggle("hide");
 }
 
 function addTask() {
@@ -142,6 +161,7 @@ function showTaskArr(arr = taskArr) {
     console.log(taskArr);
     todoText.value = "";
     todoLocation.value = "";
+    resetExtras();
     // todoDate.value = FIND UD AF HVORDAN
 }
 
@@ -217,7 +237,7 @@ function filterList(tasktype){
     else if (tasktype === "Favorite") {
         filteredList = taskArr.filter(isFavorite);
     }
-    else if (tasktype === "Done") {
+    else if (tasktype === "Completed") {
         filteredList = taskArr.filter(isDone);
     }
     

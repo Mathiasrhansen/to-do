@@ -74,6 +74,14 @@ p {
     display: none !important; 
 }
 
+body {
+    background-color: #F2F3F4;
+}
+
+.sidebar, .list-container {
+    background-color: white;
+}
+
 /* Intro */
 
 .intro-screen {
@@ -255,6 +263,9 @@ li {
 
 .todo-settings {
     padding: 8px 10.5px;
+    display: inline-block;
+    /* flex-direction: row; */
+    align-items: center;
 }
 
 li:hover {
@@ -318,9 +329,12 @@ input[type=checkbox] {
     cursor: pointer;
 }
 
-input[type=date], #todo-location {
-    background-color: #e9e9ed;
+input[type=date], #todo-location, .todo-btn, .todo-settings {
+    background-color: #d7d7d7;
+    cursor: pointer;
+    font-family: inter-semi;
 }
+
 
 .task-btn:first-child:hover svg path {
     stroke: #5e5e5e;
